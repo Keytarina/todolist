@@ -1,0 +1,5 @@
+[
+    { "id": "id-1", "text": "Text 1", "completed": true },
+    { "id": "id-2", "text": "Text 2", "completed": false },
+    { "id": "id-3", "text": "Text 3", "completed": false }
+]
