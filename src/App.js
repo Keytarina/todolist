@@ -1,15 +1,28 @@
 import React, { Component } from "react";
-// import shortid from "shortid";
-// import Container from "./components/Container";
+import shortid from "shortid";
+import Container from "./components/Container";
 import TodoList from "./components/TodoList";
+import TodoEditor from "./components/TodoEditor";
 import initialTodos from "./todos.json";
-import { format } from "date-fns";
+// import { format } from "date-fns";
 
 // const now = format(new Date(), "dd.MM.yyyy");
 
 class App extends Component {
 	state = {
-		todos: initialTodos,
+		todos: [],
+	};
+
+	addTodo = (text) => {
+		const todo = {
+			id: shortid.generate(),
+			text,
+			completed: false,
+		};
+
+		this.setState(({ todos }) => ({
+			todos: [todo, ...todos],
+		}));
 	};
 
 	deleteTodo = (todoId) => {
@@ -37,22 +50,24 @@ class App extends Component {
 
 	render() {
 		const { todos } = this.state;
-		const date = format(new Date(), "dd.MM.yyyy");
+		// const date = format(new Date(), "dd.MM.yyyy");
 		const totalTodoCount = todos.length;
 		const completedTodoCount = this.calculateCompletedTodos();
 		return (
-			<>
-				<h1>Завдання на {date}</h1>
+			<Container>
+				<h1>Завдання</h1>
 				<div>
 					<p>Всього нотаток: {totalTodoCount}</p>
 					<p>Виконано: {completedTodoCount}</p>
 				</div>
+				<TodoEditor onSubmit={this.addTodo}></TodoEditor>
+
 				<TodoList
 					todos={todos}
 					onDeleteTodo={this.deleteTodo}
 					onToggleCompleted={this.toggleCompleted}
 				/>
-			</>
+			</Container>
 		);
 	}
 }
