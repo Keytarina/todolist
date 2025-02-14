@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { FaPlus } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 import Container from "./components/Container/Container";
-import TaskList from "./components/TaskList/TaskList";
 import TaskForm from "./components/TaskForm/TaskForm";
 import IconButton from "./components/IconButton/IconButton";
 import Modal from "./components/Modal/Modal";
-import StatusFilter from "./components/StatusFilter/StatusFilter";
-import TaskCounter from "./components/TaskCounter/TaskCounter";
 import Header from "./components/Header/Header";
+import Sidebar from "./components/Sidebar/Sidebar";
+import MainContent from "./components/MainContent/MainContent";
+import "./styles/App.scss";
 
 const App = () => {
 	// const [todos, setTodos] = useState(() => {
@@ -23,7 +24,6 @@ const App = () => {
 	// });
 
 	// const [filter, setFilter] = useState("");
-	const [showModal, setShowModal] = useState(false);
 
 	// useEffect(() => {
 	// 	window.localStorage.setItem("saved-todos", JSON.stringify(todos));
@@ -37,33 +37,35 @@ const App = () => {
 	// 	);
 	// };
 
+	const [showModal, setShowModal] = useState(false);
+
 	const toggleModal = () => {
 		setShowModal((showModal) => !showModal);
 	};
 
 	return (
 		<>
-			<Header>
-				<StatusFilter />
+			<Header />
 
-				<IconButton onClick={toggleModal} className="AddTaskButton">
-					Add task
-					<FaPlus size={20} />
-				</IconButton>
-			</Header>
+			{showModal && (
+				<Modal onClose={toggleModal}>
+					<IconButton onClick={toggleModal} className="CloseModalButton">
+						<MdClose size={24} />
+					</IconButton>
+					<TaskForm onClose={toggleModal}></TaskForm>
+				</Modal>
+			)}
 
 			<Container>
-				{showModal && (
-					<Modal onClose={toggleModal}>
-						<IconButton onClick={toggleModal} className="CloseModalButton">
-							<MdClose size={24} />
-						</IconButton>
-						<TaskForm onClose={toggleModal}></TaskForm>
-					</Modal>
-				)}
+				<Sidebar>
+					<IconButton onClick={toggleModal} className="AddTaskButton">
+						Add task
+						<FaPlus size={20} />
+					</IconButton>
+					<Calendar className="CustomCalendar" />
+				</Sidebar>
 
-				<TaskCounter />
-				<TaskList />
+				<MainContent />
 			</Container>
 		</>
 	);

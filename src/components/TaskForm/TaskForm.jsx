@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./TaskForm.scss";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../redux/actions";
+import "./TaskForm.scss";
 
 const TaskForm = ({ onClose }) => {
 	const dispatch = useDispatch();
