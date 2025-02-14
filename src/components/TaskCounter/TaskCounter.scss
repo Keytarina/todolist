@@ -1,0 +1,25 @@
+@use "../../styles/shared.scss" as *;
+
+.TaskCounter {
+  display: flex;
+  gap: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.TaskCounter__item {
+  padding: 4px 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.TaskCounter__active {
+  color: #ff9800; // Помаранчевий для активних задач
+}
+
+.TaskCounter__completed {
+  color: #4caf50; // Зелений для виконаних задач
+}
+
+  

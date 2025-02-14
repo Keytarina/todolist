@@ -1,0 +1,46 @@
+@use '../../styles/shared.scss' as *;
+
+.TaskForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+.TaskForm__textarea {
+  min-height: 100px; /* Робимо поле вищим */
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.2s ease;
+  resize: none; /* Забороняємо зміну розміру */
+  overflow-y: auto; /* Додаємо прокрутку, якщо тексту багато */
+  word-wrap: break-word; /* Переносимо довгі слова */
+  line-height: 1.5;
+
+  &:focus {
+    border-color: #646cd8;
+  }
+}
+
+.TaskForm__button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #303f9f;
+  }
+
+  &:active {
+    background: #283593;
+  }
+}

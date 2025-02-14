@@ -1,4 +1,4 @@
-@import 'styles/shared';
+@use './shared' as *;
 
 body {
   margin: 0;
@@ -25,4 +25,5 @@ h6 {
 
 p {
   margin-top: 0;
+  margin-bottom: 0;
 }

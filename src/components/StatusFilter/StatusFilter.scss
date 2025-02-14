@@ -1,0 +1,31 @@
+@use "../../styles/shared.scss" as *;
+
+.StatusFilter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &__button {
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    border: 2px solid $indigo;
+    background-color: transparent;
+    color: $indigo;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s $timing-function, color 0.3s $timing-function;
+
+    &:hover,
+    &:focus {
+      background-color: $indigo;
+      color: $white;
+    }
+
+    &--active {
+      background-color: $indigo-accent;
+      color: $white;
+      border-color: $indigo-accent;
+    }
+  }
+}
