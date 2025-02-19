@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setStatusFilter } from "../../redux/actions";
+import { setStatusFilter } from "../../redux/filltersSlice";
 import "./StatusFilter.scss";
 
 const StatusFilter = () => {

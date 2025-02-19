@@ -4,14 +4,14 @@ import { MdClose } from "react-icons/md";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
-import Container from "./components/Container/Container";
-import TaskForm from "./components/TaskForm/TaskForm";
-import IconButton from "./components/IconButton/IconButton";
-import Modal from "./components/Modal/Modal";
-import Header from "./components/Header/Header";
-import Sidebar from "./components/Sidebar/Sidebar";
-import MainContent from "./components/MainContent/MainContent";
-import "./styles/App.scss";
+import Container from "./Container/Container";
+import TaskForm from "./TaskForm/TaskForm";
+import IconButton from "./IconButton/IconButton";
+import Modal from "./Modal/Modal";
+import Header from "./Header/Header";
+import Sidebar from "./Sidebar/Sidebar";
+import MainContent from "./MainContent/MainContent";
+import "./App.scss";
 
 const App = () => {
 	// const [todos, setTodos] = useState(() => {
