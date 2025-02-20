@@ -5,10 +5,10 @@ const slice = createSlice({
 	initialState: { status: "all" },
 	reducers: {
 		setStatusFilter: (state, action) => {
-			return {
-				...state,
-				status: action.payload,
-			};
+			// return {
+			// 	...state,
+			// 	status: action.payload,
+			// };
 		},
 	},
 });
