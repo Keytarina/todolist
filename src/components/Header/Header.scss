@@ -3,14 +3,13 @@
 
 .Header {
   display: flex;
-  align-items: center; // 📌 Вирівнює всі елементи по висоті
-  justify-content: flex-end;  padding: 12px 20px;
-  background-color: $white;
+  align-items: center; 
+  justify-content: space-between;  
+  padding: 12px 20px;
   background-color: $bg-color;
-  border-bottom: 1px solid $bg-color;
 }
   
-  .Header__button {
+.Header__button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;

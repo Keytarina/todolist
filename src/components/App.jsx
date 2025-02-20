@@ -38,14 +38,26 @@ const App = () => {
 	// };
 
 	const [showModal, setShowModal] = useState(false);
+	const [showSidebar, setShowSidebar] = useState(false);
 
 	const toggleModal = () => {
 		setShowModal((showModal) => !showModal);
 	};
+	const toggleSidebar = () => {
+		setShowSidebar((showSidebar) => !showSidebar);
+	};
 
 	return (
-		<>
-			<Header />
+		<div>
+			<Header toggleSidebar={toggleSidebar}>
+				<Sidebar className={showSidebar ? "open" : ""}>
+					<IconButton onClick={toggleModal} className="AddTaskButton">
+						Add task
+						<FaPlus size={20} />
+					</IconButton>
+					<Calendar className="CustomCalendar" />
+				</Sidebar>
+			</Header>
 
 			{showModal && (
 				<Modal onClose={toggleModal}>
@@ -57,17 +69,9 @@ const App = () => {
 			)}
 
 			<Container>
-				<Sidebar>
-					<IconButton onClick={toggleModal} className="AddTaskButton">
-						Add task
-						<FaPlus size={20} />
-					</IconButton>
-					<Calendar className="CustomCalendar" />
-				</Sidebar>
-
-				<MainContent />
+				<MainContent className={showSidebar ? "shifted" : ""} />
 			</Container>
-		</>
+		</div>
 	);
 };
 

@@ -1,4 +1,9 @@
 .Container {
     display: flex;
     max-width: 1440px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .Container.shifted {
+    transform: translateX(290px);
   }

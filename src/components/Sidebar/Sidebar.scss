@@ -1,13 +1,22 @@
 @use '../../styles/shared.scss' as *;
-
+  
 .Sidebar {
-    width: 250px; /* Фіксована ширина */
-    height: 100vh; /* Повна висота екрану */
-    background-color: #f8f9fa; /* Світло-сірий фон */
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  }
+  position: fixed;
+  top: 64px;
+  left: -290px;
+  width: 250px;
+  height: 100vh;
+  padding: 20px;
+  background-color: #f8f9fa; /* Світло-сірий фон */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.Sidebar.open {
+  left: 0; /* Відкривається */
+}

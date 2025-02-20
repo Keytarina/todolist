@@ -81,3 +81,23 @@
     outline: none;
   }
 }
+
+.openSidebar {
+  position: flex;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #555;
+
+  &:hover {
+    color: #222;
+    background-color: #d5e7d5;
+    transform: scale(1.05);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
