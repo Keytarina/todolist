@@ -21,13 +21,16 @@
 1. Клонування репозиторію
 
 git clone https://github.com/Keytarina/todolist.git
+
 cd todolist
 
 2. Встановлення залежностей
-   npm install
+
+npm install
 
 3. Запуск проєкту
-   npm start
+
+npm start
 
 Використання:
 

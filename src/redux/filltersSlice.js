@@ -6,11 +6,6 @@ const slice = createSlice({
 	reducers: {
 		setStatusFilter: (state, action) => {
 			state.status = action.payload;
-
-			// return {
-			// 	...state,
-			// 	status: action.payload,
-			// };
 		},
 	},
 });

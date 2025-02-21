@@ -17,21 +17,21 @@ const getVisibleTasks = (tasks, statusFilter) => {
 const TaskList = () => {
 	const tasks = useSelector((state) => state.tasks.items);
 	const statusFilter = useSelector((state) => state.filters.status);
-
 	const visibleTasks = getVisibleTasks(tasks, statusFilter);
 
 	return (
 		<ul className="TaskList">
-			{visibleTasks.map((task) => (
-				<li
-					key={task.id}
-					className={classNames("TaskList__item", {
-						"TaskList__item--completed": task.completed,
-					})}
-				>
-					<Task task={task} />
-				</li>
-			))}
+			{tasks.length > 0 &&
+				visibleTasks.map((task) => (
+					<li
+						key={task.id}
+						className={classNames("TaskList__item", {
+							"TaskList__item--completed": task.completed,
+						})}
+					>
+						<Task task={task} />
+					</li>
+				))}
 		</ul>
 	);
 };

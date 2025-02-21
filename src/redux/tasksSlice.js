@@ -8,6 +8,22 @@ const slice = createSlice({
 		error: null,
 	},
 	reducers: {
+		// Виконається в момент старту HTTP-запиту
+		fetchInProgress(state) {
+			state.isLoading = true;
+		},
+		// Виконається якщо HTTP-запит завершився успішно
+		fetchSuccess(state, action) {
+			state.isLoading = false;
+			state.error = null;
+			state.items = action.payload;
+		},
+		// Виконається якщо HTTP-запит завершився з помилкою
+		fetchError(state, action) {
+			state.isLoading = false;
+			state.error = action.payload;
+		},
+
 		addTask: (state, action) => {
 			state.items.push(action.payload);
 		},
@@ -25,5 +41,12 @@ const slice = createSlice({
 	},
 });
 // Експортуємо фабрики екшенів і редюсер слайсу
-export const { addTask, deleteTask, toggleCompleted } = slice.actions;
+export const {
+	fetchInProgress,
+	fetchSuccess,
+	fetchError,
+	addTask,
+	deleteTask,
+	toggleCompleted,
+} = slice.actions;
 export default slice.reducer;
