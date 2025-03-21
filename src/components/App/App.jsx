@@ -5,15 +5,17 @@ import { MdClose } from "react-icons/md";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
-import Container from "./components/Container/Container";
-import TaskForm from "./components/TaskForm/TaskForm";
-import IconButton from "./components/IconButton/IconButton";
-import Modal from "./components/Modal/Modal";
-import Header from "./components/Header/Header";
-import Sidebar from "./components/Sidebar/Sidebar";
-import MainContent from "./components/MainContent/MainContent";
+import Container from "../Container/Container";
+import TaskForm from "../TaskForm/TaskForm";
+import IconButton from "../IconButton/IconButton";
+import Modal from "../Modal/Modal";
+import Header from "../Header/Header";
+import Sidebar from "../Sidebar/Sidebar";
+import MainContent from "../MainContent/MainContent";
+import Loading from "../Loading/Loading";
+import NoFound from "../NoFound/NoFound";
 
-import { fetchTasks } from "./redux/operations";
+import { fetchTasks } from "../../redux/operations";
 
 import "./App.scss";
 
@@ -57,11 +59,13 @@ const App = () => {
 				</Modal>
 			)}
 
-			<Container>
-				{isLoading && <p>Loading tasks...</p>}
-				{error && <p>{error}</p>}
-				<MainContent className={showSidebar ? "shifted" : ""} />
-			</Container>
+			{isLoading && <Loading />}
+			{error && <NoFound error={error} />}
+			{!isLoading && !error && (
+				<Container>
+					<MainContent className={showSidebar ? "shifted" : ""} />
+				</Container>
+			)}
 		</div>
 	);
 };

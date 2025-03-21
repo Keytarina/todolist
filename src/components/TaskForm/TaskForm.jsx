@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addTask } from "../../redux/tasksSlice";
+import { addTask } from "../../redux/operations";
 import "./TaskForm.scss";
 
 const TaskForm = ({ onClose }) => {
@@ -12,13 +12,8 @@ const TaskForm = ({ onClose }) => {
 		const taskText = form.elements.text.value.trim();
 		if (taskText === "") return; // Не додаємо пустий текст
 
-		dispatch(
-			addTask({
-				id: crypto.randomUUID(),
-				text: form.elements.text.value,
-				completed: false,
-			})
-		);
+		dispatch(addTask(event.target.elements.text.value));
+
 		form.reset();
 		onClose(); // Закриваємо модалку після сабміту
 	};

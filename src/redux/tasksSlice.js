@@ -1,52 +1,57 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchTasks, addTask, deleteTask, toggleCompleted } from "./operations";
 
-const slice = createSlice({
+const handlePanding = (state) => {
+	state.isLoading = true;
+};
+
+const handleRejected = (state, action) => {
+	state.isLoading = false;
+	state.error = action.payload;
+};
+
+const tasksSlice = createSlice({
 	name: "tasks",
 	initialState: {
 		items: [],
 		isLoading: false,
 		error: null,
 	},
-	reducers: {
-		// Виконається в момент старту HTTP-запиту
-		fetchInProgress(state) {
-			state.isLoading = true;
-		},
-		// Виконається якщо HTTP-запит завершився успішно
-		fetchSuccess(state, action) {
-			state.isLoading = false;
-			state.error = null;
-			state.items = action.payload;
-		},
-		// Виконається якщо HTTP-запит завершився з помилкою
-		fetchError(state, action) {
-			state.isLoading = false;
-			state.error = action.payload;
-		},
-
-		addTask: (state, action) => {
-			state.items.push(action.payload);
-		},
-		deleteTask: (state, action) => {
-			state.items = state.items.filter((item) => item.id !== action.payload);
-		},
-		toggleCompleted: (state, action) => {
-			for (const task of state.items) {
-				if (task.id === action.payload) {
-					task.completed = !task.completed;
-					break;
-				}
-			}
-		},
+	extraReducers: (builder) => {
+		builder
+			.addCase(fetchTasks.pending, handlePanding)
+			.addCase(fetchTasks.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.error = null;
+				state.items = action.payload;
+			})
+			.addCase(fetchTasks.rejected, handleRejected)
+			.addCase(addTask.pending, handlePanding)
+			.addCase(addTask.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.error = null;
+				state.items.push(action.payload);
+			})
+			.addCase(addTask.rejected, handleRejected)
+			.addCase(deleteTask.pending, handlePanding)
+			.addCase(deleteTask.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.error = null;
+				state.items = state.items.filter(
+					(task) => task.id !== action.payload.id
+				);
+			})
+			.addCase(deleteTask.rejected, handleRejected)
+			.addCase(toggleCompleted.pending, handlePanding)
+			.addCase(toggleCompleted.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.error = null;
+				state.items = state.items.map((task) =>
+					task.id === action.payload.id ? action.payload : task
+				);
+			})
+			.addCase(toggleCompleted.rejected, handleRejected);
 	},
 });
-// Експортуємо фабрики екшенів і редюсер слайсу
-export const {
-	fetchInProgress,
-	fetchSuccess,
-	fetchError,
-	addTask,
-	deleteTask,
-	toggleCompleted,
-} = slice.actions;
-export default slice.reducer;
+
+export default tasksSlice.reducer;
